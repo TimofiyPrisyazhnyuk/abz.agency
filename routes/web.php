@@ -11,6 +11,13 @@
 |
 */
 
+use Illuminate\Support\Facades\Route;
+
+
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
+Route::get('/home', 'StaffList\StaffListController@index')->name('home');
