@@ -14,10 +14,11 @@
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+Route::get('/', ['uses' => 'Welcome\WelcomeController@welcome'])->name('welcome');
 
 Auth::routes();
 
-Route::get('/home', 'StaffList\StaffListController@index')->name('home');
+Route::resource('staff.tree','Staff\StaffTreeController');
+Route::resource('staff.list','Staff\StaffListController');
+
