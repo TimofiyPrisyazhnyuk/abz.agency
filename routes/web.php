@@ -19,6 +19,6 @@ Route::get('/', ['uses' => 'Welcome\WelcomeController@welcome'])->name('welcome'
 
 Auth::routes();
 
-Route::resource('staff.tree','Staff\StaffTreeController');
-Route::resource('staff.list','Staff\StaffListController');
+Route::resource('staff_tree','Staff\StaffTreeController');
+Route::resource('staff_list','Staff\StaffListController');
 

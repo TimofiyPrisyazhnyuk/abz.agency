@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 
 class StaffTreeController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +15,7 @@ class StaffTreeController extends Controller
      */
     public function index()
     {
-        //
+        return view('staff_tree.users_tree');
     }
 
     /**

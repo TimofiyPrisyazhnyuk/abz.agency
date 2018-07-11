@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('email',100)->unique();
             $table->string('password',100);
             $table->date('date_hiring');
-            $table->unsignedInteger('position_id');
+            $table->unsignedDecimal('amount_of_wages',8,2);
             $table->unsignedInteger('position_id');
             $table->rememberToken();
 //            $table->timestamps();
