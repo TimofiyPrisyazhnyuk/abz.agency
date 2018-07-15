@@ -20,11 +20,10 @@ class CreateUsersTable extends Migration
             $table->string('patronymic',50);
             $table->string('email',100)->unique();
             $table->string('password',100);
-            $table->date('date_hiring');
             $table->unsignedDecimal('amount_of_wages',8,2);
-            $table->unsignedInteger('position_id');
+            $table->integer('position_id')->unsigned();
             $table->rememberToken();
-//            $table->timestamps();
+            $table->timestamps();
         });
     }
 
@@ -36,5 +35,6 @@ class CreateUsersTable extends Migration
     public function down()
     {
         Schema::dropIfExists('users');
+
     }
 }

@@ -15,6 +15,11 @@ use Illuminate\Support\Facades\Route;
 
 
 
+// test react
+
+Route::get('/react', ['uses' => 'Welcome\WelcomeController@testReact'])->name('react');
+
+
 Route::get('/', ['uses' => 'Welcome\WelcomeController@welcome'])->name('welcome');
 
 Auth::routes();
