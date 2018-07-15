@@ -19,7 +19,7 @@ class WelcomeController extends Controller
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function  testReact()
+    public function  testVue()
     {
         return  view('vue');
     }

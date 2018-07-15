@@ -15,7 +15,7 @@ class AddVotesToUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->foreign('position_id')
-                ->references('id')->on('users');
+                ->references('id')->on('positions');
 
         });
     }
