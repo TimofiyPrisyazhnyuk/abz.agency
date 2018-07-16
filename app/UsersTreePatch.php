@@ -17,5 +17,10 @@ class UsersTreePatch extends Model
     /**
      * @var string
      */
-    protected $table = 'users_tree_patch';
+    protected $table = 'users_tree_patchs';
+
+    /**
+     * @var bool
+     */
+    public $timestamps = false;
 }

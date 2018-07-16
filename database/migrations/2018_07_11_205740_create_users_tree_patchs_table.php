@@ -17,7 +17,6 @@ class CreateUsersTreePatchsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('user_parent_id');
             $table->unsignedInteger('user_child_id');
-            $table->timestamps();
         });
     }
 
