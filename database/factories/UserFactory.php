@@ -14,26 +14,25 @@ use Faker\Generator as Faker;
 */
 
 $factory->define(App\User::class, function (Faker $faker) {
-    static $increment = 1;
-    static $position;
-    static $amount;
+    static $increment = [
+        'increment' => 1,
+        'position' => 1,
+        'amount' => 200000,
+    ];
+    $increment['increment']++;
 
-    $increment++;
-
-    if ($increment == 2) {
-        $position = 1;
-        $amount = 200000;
-    } elseif ($increment > 2 && $increment <= 12) {
-        $position = 2;
-        $amount = 100000;
-    } elseif ($increment > 12 && $increment <= 100) {
-        $position = 3;
-        $amount = 60000;
-    } elseif ($increment > 100 && $increment <= 10000) {
-        $amount = 30000;
-    } elseif ($increment > 10000 && $increment <= 50000) {
-        $position = 5;
-        $amount = 15000;
+    if ($increment['increment'] > 2 && $increment['increment'] <= 12) {
+        $increment['position'] = 2;
+        $increment['amount'] = 100000;
+    } elseif ($increment['increment'] > 12 && $increment['increment'] <= 102) {
+        $increment['position'] = 3;
+        $increment['amount'] = 60000;
+    } elseif ($increment['increment'] > 102 && $increment['increment'] <= 1002) {
+        $increment['position'] = 4;
+        $increment['amount'] = 30000;
+    } elseif ($increment['increment'] > 1002 && $increment['increment'] <= 50002) {
+        $increment['position'] = 5;
+        $increment['amount'] = 15000;
     };
     return [
         'surname' => $faker->firstName,
@@ -41,8 +40,9 @@ $factory->define(App\User::class, function (Faker $faker) {
         'patronymic' => $faker->lastName,
         'email' => $faker->unique()->safeEmail,
         'password' => bcrypt(123456), // secret
-        'amount_of_wages' => $amount,
-        'position_id' => $position,
+        'amount_of_wages' => $increment['amount'] + $increment['increment'],
+        'date_engagement' => date('Y-m-d'),
+        'position_id' => $increment['position'],
         'remember_token' => str_random(16),
     ];
 

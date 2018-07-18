@@ -23,4 +23,20 @@ class UsersTreePatch extends Model
      * @var bool
      */
     public $timestamps = false;
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function parentUsers()
+    {
+        return $this->belongsTo(User::class,'user_parent_id','id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function childUsers()
+    {
+        return $this->belongsTo(User::class,'user_child_id','id');
+    }
 }

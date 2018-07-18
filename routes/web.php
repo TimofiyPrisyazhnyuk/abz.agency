@@ -14,11 +14,6 @@
 use Illuminate\Support\Facades\Route;
 
 
-
-// test vue
-Route::get('/vue', ['uses' => 'Welcome\WelcomeController@testVue'])->name('react');
-
-
 Route::get('/', ['uses' => 'Welcome\WelcomeController@welcome'])->name('welcome');
 
 Auth::routes();

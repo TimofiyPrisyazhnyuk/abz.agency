@@ -16,11 +16,4 @@ class WelcomeController extends Controller
         return view('welcome');
     }
 
-    /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function  testVue()
-    {
-        return  view('vue');
-    }
 }

@@ -20,9 +20,9 @@ class User extends Authenticatable
         'patronymic',
         'email',
         'password',
-        'date_hiring',
+        'date_engagement',
+        'amount_of_wages',
         'position_id',
-
     ];
 
     /**
@@ -33,4 +33,25 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * @var bool
+     */
+    public $timestamps = false;
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function getChild()
+    {
+        return $this->hasMany(UsersTreePatch::class,'user_parent_id','id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function getParent()
+    {
+        return $this->hasOne(UsersTreePatch::class,'user_child_id','id');
+    }
 }
