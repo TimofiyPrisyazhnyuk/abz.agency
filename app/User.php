@@ -44,7 +44,7 @@ class User extends Authenticatable
      */
     public function getChild()
     {
-        return $this->hasMany(UsersTreePatch::class,'user_parent_id','id');
+        return $this->hasMany(UsersTreePatch::class, 'user_parent_id', 'id');
     }
 
     /**
@@ -52,6 +52,6 @@ class User extends Authenticatable
      */
     public function getParent()
     {
-        return $this->hasOne(UsersTreePatch::class,'user_child_id','id');
+        return $this->hasOne(UsersTreePatch::class, 'user_child_id', 'id');
     }
 }

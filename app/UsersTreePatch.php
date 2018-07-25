@@ -12,7 +12,7 @@ class UsersTreePatch extends Model
     protected $fillable = [
         'user_parent_id',
         'user_child_id'
-        ];
+    ];
 
     /**
      * @var string
@@ -29,7 +29,7 @@ class UsersTreePatch extends Model
      */
     public function parentUsers()
     {
-        return $this->belongsTo(User::class,'user_parent_id','id');
+        return $this->belongsTo(User::class, 'user_parent_id', 'id');
     }
 
     /**
@@ -37,6 +37,6 @@ class UsersTreePatch extends Model
      */
     public function childUsers()
     {
-        return $this->belongsTo(User::class,'user_child_id','id');
+        return $this->belongsTo(User::class, 'user_child_id', 'id');
     }
 }

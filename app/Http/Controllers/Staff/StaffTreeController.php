@@ -17,11 +17,9 @@ class StaffTreeController extends Controller
      */
     public function index()
     {
-        $user = User::where('position_id', 1)->with('getChild')->first();
+      //  $user = User::where('position_id', 1)->with('getChild')->first();
 
-        return view('staff-tree.users_tree', [
-            'user' => $user,
-        ]);
+        return view('staff-tree.index');
     }
 
     /**
