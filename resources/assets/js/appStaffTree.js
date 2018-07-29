@@ -1,1 +1,0 @@
-window.Vue = require('vue');Vue.component('staff-tree-index', require('./components/StaffTreeIndexComponent.vue'));var app = new Vue({        el: '#app',        data: {        },    });
