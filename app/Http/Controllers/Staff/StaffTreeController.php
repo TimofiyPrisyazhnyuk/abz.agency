@@ -17,15 +17,14 @@ class StaffTreeController extends Controller
      */
     public function index()
     {
-      //  $user = User::where('position_id', 1)->with('getChild')->first();
-
+        //  $user = User::where('position_id', 1)->with('getChild')->first();
         return view('staff-tree.index');
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return void
      */
     public function create()
     {
@@ -40,7 +39,9 @@ class StaffTreeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if ($request->isJson()) {
+            return response()->json(User::where('position_id', 1)->with('getChild')->first());
+        }
     }
 
     /**
