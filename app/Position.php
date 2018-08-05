@@ -16,4 +16,12 @@ class Position extends Model
      * @var string
      */
     protected $table = 'positions';
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function users()
+    {
+        return $this->hasMany(User::class);
+    }
 }

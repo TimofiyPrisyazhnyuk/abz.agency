@@ -42,7 +42,7 @@ class User extends Authenticatable
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function getChild()
+    public function childTreePatch()
     {
         return $this->hasMany(UsersTreePatch::class, 'user_parent_id', 'id');
     }
@@ -50,8 +50,16 @@ class User extends Authenticatable
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function getParent()
+    public function parentTreePatch()
     {
         return $this->hasOne(UsersTreePatch::class, 'user_child_id', 'id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function position()
+    {
+        return $this->belongsTo(Position::class,'position_id','id');
     }
 }

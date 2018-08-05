@@ -1,6 +1,10 @@
 body {
   font-family: Menlo, Consolas, monospace;
   color: #444;
-  background: antiquewhite;
+  background: #72fa76;
+}
+
+#staff_tree {
+  min-height: 80vh;
 }
 
