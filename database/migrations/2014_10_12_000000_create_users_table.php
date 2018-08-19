@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('patronymic',21);
             $table->string('email',50)->unique();
             $table->string('password',100);
+            $table->string('image',50)->nullable();
             $table->date('date_engagement');
             $table->unsignedDecimal('amount_of_wages',8,2);
             $table->unsignedInteger('position_id');

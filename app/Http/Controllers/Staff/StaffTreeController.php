@@ -63,7 +63,7 @@ class StaffTreeController extends Controller
      */
     public function show($id)
     {
-        //
+        return response()->json(UsersTreePatch::where('user_parent_id', $id)->with('childUsers')->get());
     }
 
     /**

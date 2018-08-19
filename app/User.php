@@ -20,6 +20,7 @@ class User extends Authenticatable
         'patronymic',
         'email',
         'password',
+        'image',
         'date_engagement',
         'amount_of_wages',
         'position_id',

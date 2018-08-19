@@ -1,10 +1,53 @@
 body {
   font-family: Menlo, Consolas, monospace;
   color: #444;
-  background: #72fa76;
 }
 
 #staff_tree {
   min-height: 80vh;
+}
+
+.rst__rowContents {
+  border-radius: 20px !important;
+  z-index: 999999999;
+  overflow-y: auto;
+}
+
+.rst__rowWrapper {
+  min-width: 650px;
+  min-height: 75px;
+}
+
+.app-user-name,
+.app-user-position,
+.app-user-pay-amount,
+.app-user-start-date,
+.app-tree-image {
+  position: relative;
+  font-size: 1.1em;
+  padding: 0 1% 0 1%;
+}
+
+.app-user-name,
+.app-user-position,
+.app-user-pay-amount,
+.app-user-start-date {
+  background: #e5fcf8;
+  border: 1px solid #7a7a7a;
+  border-radius: 10px;
+}
+
+.app-tree-image {
+  width: 50px;
+  margin-right: 20px;
+  position: relative;
+}
+
+.app-left-block {
+  float: left;
+}
+
+.app-right-block {
+  padding-top: 4px;
 }
 

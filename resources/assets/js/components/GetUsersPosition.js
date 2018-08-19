@@ -1,0 +1,1 @@
+import ReactDOM from "react-dom";import React, {Component} from 'react';class GetUsersPosition extends Component {    /**     *     * @param props     */    constructor(props) {        super(props);    }    /**     *     */    // static getUsersToPosition() {    //     console.log(this);    // }}
