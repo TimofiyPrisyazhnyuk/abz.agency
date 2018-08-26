@@ -49,13 +49,13 @@ export default class Tree extends Component {
      * @param addUser
      */
     addNodeUser(data, addUser) {
-        console.log(addUser);
-        // console.log(treeIndex);
+
         let newTree = addNodeUnderParent({
             treeData: this.state.treeData,
             newNode: addUser,
+            // path: data.id,
             expandParent: false,
-            parentKey:data.id - 1 , // Still don't know where to get the parentKey
+            parentKey: data.id - 1, // Still don't know where to get the parentKey
             getNodeKey: ({treeIndex}) => treeIndex
         });
         this.setState({treeData: newTree.treeData});
@@ -75,8 +75,6 @@ export default class Tree extends Component {
             }
         ).then(response => {
             let users = this.getUsers(response.data, 'children');
-            // console.log(data);
-            // console.log(users);
             users.map((addUser) =>
                 this.addNodeUser(data, addUser)
             )
