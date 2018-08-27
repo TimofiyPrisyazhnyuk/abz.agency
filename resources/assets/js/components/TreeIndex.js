@@ -48,16 +48,16 @@ export default class Tree extends Component {
      * @param data
      * @param addUser
      */
-    addNodeUser(data, addUser) {
-
+    addNodeUser(currentUser, addUser) {
         let newTree = addNodeUnderParent({
             treeData: this.state.treeData,
             newNode: addUser,
-            // path: data.id,
-            expandParent: false,
-            parentKey: data.id - 1, // Still don't know where to get the parentKey
-            getNodeKey: ({treeIndex}) => treeIndex
-        });
+            // path: currentUser.id,
+            // expandParent: false,
+            expanded: false,
+            parentKey: currentUser.id - 1, // Still don't know where to get the parentKey
+            getNodeKey: ({treeIndex}) => treeIndex,
+        })
         this.setState({treeData: newTree.treeData});
     }
 
@@ -67,8 +67,8 @@ export default class Tree extends Component {
      * @param e
      * @param data
      */
-    getUsersToPosition(e, data) {
-        axios.get("/staff_tree/" + data.id, {
+    getUsersToPosition(e, currentUser) {
+        axios.get("/staff_tree/" + currentUser.id, {
                 headers: {'X-CSRF-TOKEN': token},
                 credentials: "same-origin",
                 body: JSON.stringify({})
@@ -76,7 +76,7 @@ export default class Tree extends Component {
         ).then(response => {
             let users = this.getUsers(response.data, 'children');
             users.map((addUser) =>
-                this.addNodeUser(data, addUser)
+                this.addNodeUser(currentUser, addUser)
             )
         }).catch(function (error) {
             console.log(error);

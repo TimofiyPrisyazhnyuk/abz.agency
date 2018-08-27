@@ -14037,14 +14037,14 @@ var Tree = function (_Component) {
 
     }, {
         key: 'addNodeUser',
-        value: function addNodeUser(data, addUser) {
-
+        value: function addNodeUser(currentUser, addUser) {
             var newTree = Object(__WEBPACK_IMPORTED_MODULE_2_react_sortable_tree__["a" /* addNodeUnderParent */])({
                 treeData: this.state.treeData,
                 newNode: addUser,
-                // path: data.id,
-                expandParent: false,
-                parentKey: data.id - 1, // Still don't know where to get the parentKey
+                // path: currentUser.id,
+                // expandParent: false,
+                expanded: false,
+                parentKey: currentUser.id - 1, // Still don't know where to get the parentKey
                 getNodeKey: function getNodeKey(_ref) {
                     var treeIndex = _ref.treeIndex;
                     return treeIndex;
@@ -14061,17 +14061,17 @@ var Tree = function (_Component) {
 
     }, {
         key: 'getUsersToPosition',
-        value: function getUsersToPosition(e, data) {
+        value: function getUsersToPosition(e, currentUser) {
             var _this3 = this;
 
-            __WEBPACK_IMPORTED_MODULE_4_axios___default.a.get("/staff_tree/" + data.id, {
+            __WEBPACK_IMPORTED_MODULE_4_axios___default.a.get("/staff_tree/" + currentUser.id, {
                 headers: { 'X-CSRF-TOKEN': token },
                 credentials: "same-origin",
                 body: JSON.stringify({})
             }).then(function (response) {
                 var users = _this3.getUsers(response.data, 'children');
                 users.map(function (addUser) {
-                    return _this3.addNodeUser(data, addUser);
+                    return _this3.addNodeUser(currentUser, addUser);
                 });
             }).catch(function (error) {
                 console.log(error);
