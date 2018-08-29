@@ -1,6 +1,8 @@
 {
     "/js/appStaffTree.js": "/js/appStaffTree.js",
     "/css/appStaffTreeIndex.css": "/css/appStaffTreeIndex.css",
+    "/css/appListUsers.css": "/css/appListUsers.css",
     "/css/app.css": "/css/app.css",
-    "/js/app.js": "/js/app.js"
+    "/js/app.js": "/js/app.js",
+    "/js/datatable.js": "/js/datatable.js"
 }

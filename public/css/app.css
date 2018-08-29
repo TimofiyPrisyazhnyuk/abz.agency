@@ -10522,7 +10522,7 @@ body {
 }
 
 .links > a {
-  color: #636b6f;
+  color: #090909;
   padding: 0 25px;
   font-size: 16px;
   font-weight: 600;
@@ -10531,7 +10531,32 @@ body {
   text-transform: uppercase;
 }
 
+.nav-link {
+  display: block;
+  font-size: 14px;
+  color: #090909 !important;
+  font-family: 'Raleway', sans-serif;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: 600;
+  transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -webkit-transition: all 0.2s ease-in-out;
+}
+
+.nav-link:hover {
+  color: #df0031 !important;
+}
+
 .m-b-md {
   margin-bottom: 30px;
+}
+
+.app-padding-header {
+  padding: 15px 0 !important;
+}
+
+.navbar-toggler-icon {
+  font-size: 10px;
 }
 

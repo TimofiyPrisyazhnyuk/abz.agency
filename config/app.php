@@ -151,6 +151,12 @@ return [
          * Package Service Providers...
          */
 
+        /**
+         * Data table
+         */
+        Yajra\DataTables\DataTablesServiceProvider::class,
+
+
         /*
          * Application Service Providers...
          */

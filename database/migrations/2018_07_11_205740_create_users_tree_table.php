@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUsersTreePatchsTable extends Migration
+class CreateUsersTreeTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateUsersTreePatchsTable extends Migration
      */
     public function up()
     {
-        Schema::create('users_tree_patchs', function (Blueprint $table) {
+        Schema::create('users_tree', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_parent_id');
             $table->unsignedInteger('user_child_id');
@@ -27,6 +27,6 @@ class CreateUsersTreePatchsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users_tree_patchs');
+        Schema::dropIfExists('users_tree');
     }
 }

@@ -3,8 +3,13 @@ body {
   color: #444;
 }
 
+.title {
+  background-color: #df0031;
+}
+
 #staff_tree {
   min-height: 80vh;
+  background: #EFEFEF;
 }
 
 .rst__rowContents {

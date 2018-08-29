@@ -3,14 +3,10 @@
 use App\User;
 use Faker\Generator as Faker;
 
-$factory->define(\App\UsersTreePatch::class, function (Faker $faker) {
+$factory->define(\App\UsersTree::class, function (Faker $faker) {
+
     $users = User::all();
 
-//    $position_1 = $users->where('position_id', 1)->first();
-//    $position_2 = $users->where('position_id', 2);
-//    $position_3 = $users->where('position_id', 3);
-//    $position_4 = $users->where('position_id', 4);
-//    $position_5 = $users->where('position_id', 5);
     foreach ($users as $key => $value) {
         if ($value->position_id == 1) {
 

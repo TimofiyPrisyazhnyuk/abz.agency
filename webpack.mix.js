@@ -13,5 +13,7 @@ let mix = require('laravel-mix');
 
 mix.react('resources/assets/js/app.js', 'public/js')
    .js('resources/assets/js/appStaffTree.js','public/js')
+   .js('resources/assets/js/datatable.js','public/js')
    .sass('resources/assets/sass/appStaffTreeIndex.scss', 'public/css')
+   .sass('resources/assets/sass/appListUsers.scss', 'public/css')
    .sass('resources/assets/sass/app.scss', 'public/css');

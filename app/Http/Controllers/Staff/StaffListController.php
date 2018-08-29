@@ -2,13 +2,17 @@
 
 namespace App\Http\Controllers\Staff;
 
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Yajra\DataTables\Facades\DataTables;
 
 class StaffListController extends Controller
 {
 
-
+    /**
+     * StaffListController constructor.
+     */
     public function __construct()
     {
         $this->middleware('auth');
@@ -21,7 +25,7 @@ class StaffListController extends Controller
      */
     public function index()
     {
-        return view('home');
+        return view('staff-list.index');
     }
 
     /**
@@ -37,29 +41,33 @@ class StaffListController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
     public function store(Request $request)
     {
-        //
+        if ($request->ajax()) {
+            return DataTables::of(User::with('position')->get())->toJson();
+        }
+        abort(404);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param User $staff_list
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $staff_list)
     {
-        //
+        return view('staff-list.show',['user' => $staff_list]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -70,8 +78,8 @@ class StaffListController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -82,7 +90,7 @@ class StaffListController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

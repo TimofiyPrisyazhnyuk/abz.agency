@@ -1,10 +1,10 @@
 <?php
 
 use App\User;
-use App\UsersTreePatch;
+use App\UsersTree;
 use Illuminate\Database\Seeder;
 
-class UsersTreePatchsTableSeeder extends Seeder
+class UsersTreeTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -32,7 +32,7 @@ class UsersTreePatchsTableSeeder extends Seeder
             switch ($value->position_id) {
                 case 1:
                     foreach ($users->where('position_id', 2) as $item) {
-                        UsersTreePatch::create([
+                        UsersTree::create([
                             'user_parent_id' => $value->id,
                             'user_child_id' => $item->id,
                         ]);
@@ -41,7 +41,7 @@ class UsersTreePatchsTableSeeder extends Seeder
                 case 2:
                     for ($k = 11; $k < count($count_users['users_to_1']) + 12; $k++) {
                         if ($k > $count_users['users_1'] && $k <= ($count_users['users_1'] + $count_users['increment_1'])) {
-                            UsersTreePatch::create([
+                            UsersTree::create([
                                 'user_parent_id' => $value->id,
                                 'user_child_id' => $count_users['users_to_1'][$k]->id
                             ]);
@@ -52,7 +52,7 @@ class UsersTreePatchsTableSeeder extends Seeder
                 case 3:
                     for ($k = 101; $k < count($count_users['users_to_2']) + 102; $k++) {
                         if ($k > $count_users['users_2'] && $k <= ($count_users['users_2'] + $count_users['increment_2'])) {
-                            UsersTreePatch::create([
+                            UsersTree::create([
                                 'user_parent_id' => $value->id,
                                 'user_child_id' => $count_users['users_to_2'][$k]->id
                             ]);
@@ -63,7 +63,7 @@ class UsersTreePatchsTableSeeder extends Seeder
                 case 4:
                     for ($k = 1001; $k < count($count_users['users_to_3']) + 1002; $k++) {
                         if ($k > $count_users['users_3'] && $k <= ($count_users['users_3'] + $count_users['increment_3'])) {
-                            UsersTreePatch::create([
+                            UsersTree::create([
                                 'user_parent_id' => $value->id,
                                 'user_child_id' => $count_users['users_to_3'][$k]->id
                             ]);

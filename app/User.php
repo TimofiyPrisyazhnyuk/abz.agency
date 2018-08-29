@@ -43,17 +43,17 @@ class User extends Authenticatable
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function childTreePatch()
+    public function childTree()
     {
-        return $this->hasMany(UsersTreePatch::class, 'user_parent_id', 'id');
+        return $this->hasMany(UsersTree::class, 'user_parent_id', 'id');
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function parentTreePatch()
+    public function parentTree()
     {
-        return $this->hasOne(UsersTreePatch::class, 'user_child_id', 'id');
+        return $this->hasOne(UsersTree::class, 'user_child_id', 'id');
     }
 
     /**

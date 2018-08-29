@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class UsersTreePatch extends Model
+class UsersTree extends Model
 {
     /**
      * @var array
@@ -17,7 +17,7 @@ class UsersTreePatch extends Model
     /**
      * @var string
      */
-    protected $table = 'users_tree_patchs';
+    protected $table = 'users_tree';
 
     /**
      * @var bool
