@@ -36,6 +36,13 @@ class User extends Authenticatable
     ];
 
     /**
+     * @return string
+     */
+    public function getFullNameAttribute()
+    {
+        return "{$this->surname}  {$this->first_name} {$this->patronymic}";
+    }
+    /**
      * @var bool
      */
     public $timestamps = false;

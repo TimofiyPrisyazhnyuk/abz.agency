@@ -109,7 +109,7 @@ $(document).ready(function () {
       className: 'text-center',
       render: function render(s, d, item) {
         if (item.image) {
-          return '<img src="' + item.image + '" class="app-list-image" alt="user" >';
+          return '<img src="image_upload/' + item.image + '" class="app-list-image" alt="user" >';
         } else {
           return '<img src="/img/default.png" class="app-list-image" alt="user" >';
         }

@@ -16,8 +16,15 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', ['uses' => 'Welcome\WelcomeController@welcome'])->name('welcome');
 
+// Authentication system
 Auth::routes();
 
+// Users functionality
 Route::resource('staff_tree','Staff\StaffTreeController');
 Route::resource('staff_list','Staff\StaffListController');
+
+// Download image functionality
+Route::resource('image','Image\ImageController')->only([
+    'store', 'destroy'
+]);;
 

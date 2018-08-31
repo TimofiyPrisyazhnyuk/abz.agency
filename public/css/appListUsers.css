@@ -19,3 +19,44 @@ table.dataTable tbody td {
   vertical-align: middle;
 }
 
+.app-user-fullName {
+  font-size: 1.7em;
+  text-align: center;
+  margin-bottom: 1em;
+  border-radius: 20px;
+  -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.app-user-inf i {
+  font-size: 1.5em;
+  color: #df0031;
+}
+
+.app-user-inf {
+  font-size: 1.1em;
+  color: #1b1e21;
+  font-weight: bold;
+  padding: 1%;
+}
+
+.app-edit-user {
+  margin: 10px 0 40px 0;
+}
+
+.app-edit-user a {
+  background: #df0031;
+  -webkit-transition: 0.3s ease-in-out;
+  transition: 0.3s ease-in-out;
+}
+
+.app-image-show {
+  max-width: 200px;
+  max-height: 200px;
+  margin-bottom: 40px;
+}
+
+.app-margin-bottom {
+  margin-bottom: 20px;
+}
+

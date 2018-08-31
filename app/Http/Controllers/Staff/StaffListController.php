@@ -67,12 +67,12 @@ class StaffListController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int $id
+     * @param User $staff_list
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $staff_list)
     {
-        //
+        return view('staff-list.edit',['user' => $staff_list]);
     }
 
     /**
