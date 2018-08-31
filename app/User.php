@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Hash;
 
 class User extends Authenticatable
 {
@@ -42,6 +43,17 @@ class User extends Authenticatable
     {
         return "{$this->surname}  {$this->first_name} {$this->patronymic}";
     }
+
+    /**
+     * Automatic hashing password
+     *
+     * @param $password
+     */
+    public function setPasswordAttribute($password)
+    {
+        $this->attributes['password'] = Hash::make($password);
+    }
+
     /**
      * @var bool
      */

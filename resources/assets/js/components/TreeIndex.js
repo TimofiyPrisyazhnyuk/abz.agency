@@ -61,7 +61,6 @@ export default class Tree extends Component {
         this.setState({treeData: newTree.treeData});
     }
 
-
     /**
      *
      * @param e

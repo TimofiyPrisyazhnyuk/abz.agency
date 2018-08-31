@@ -4,5 +4,6 @@
     "/css/appListUsers.css": "/css/appListUsers.css",
     "/css/app.css": "/css/app.css",
     "/js/app.js": "/js/app.js",
+    "/js/userUpdate.js": "/js/userUpdate.js",
     "/js/datatable.js": "/js/datatable.js"
 }

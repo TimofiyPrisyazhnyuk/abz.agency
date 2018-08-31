@@ -60,3 +60,12 @@ table.dataTable tbody td {
   margin-bottom: 20px;
 }
 
+.is-invalid {
+  border: 1px solid #df0031;
+}
+
+.invalid-feedback {
+  color: #df0031;
+  font-size: 0.9em;
+}
+

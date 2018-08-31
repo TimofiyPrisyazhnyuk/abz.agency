@@ -1,1 +1,1 @@
-require('./components/TreeIndex')require('./components/GetUsersPosition')
+require('./components/TreeIndex')

@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Http\Requests\UserRequest;
 use App\Position;
 use App\User;
 use App\Http\Controllers\Controller;
 use App\UsersTree;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -55,24 +57,42 @@ class RegisterController extends Controller
         ]);
     }
 
+
+    /**
+     * Register Users
+     *
+     * @param UserRequest $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function register(UserRequest $request)
+    {
+//        $this->validator($request->all())->validate();
+
+        event(new Registered($user = $this->create($request->all())));
+
+        $this->guard()->login($user);
+
+        return $this->registered($request, $user)
+            ?: redirect($this->redirectPath());
+    }
     /**
      * Get a validator for an incoming registration request.
      *
      * @param  array $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            'surname' => 'required|string|max:30|min:3',
-            'first_name' => 'required|string|max:30|min:3',
-            'patronymic' => 'required|string|max:30|min:3',
-            'position_id' => 'required|integer|exists:positions,id',
-            'amount_of_wages' => 'required|numeric|between:3800,400000|regex:/^\d*(\.\d{1,2})?$/',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
-        ]);
-    }
+//    protected function validator(array $data)
+//    {
+//        return Validator::make($data, [
+//            'surname' => 'required|string|max:30|min:3',
+//            'first_name' => 'required|string|max:30|min:3',
+//            'patronymic' => 'required|string|max:30|min:3',
+//            'position_id' => 'required|integer|exists:positions,id',
+//            'amount_of_wages' => 'required|numeric|between:3800,400000|regex:/^\d*(\.\d{1,2})?$/',
+//            'email' => 'required|string|email|max:255|unique:users',
+//            'password' => 'required|string|min:6|confirmed',
+//        ]);
+//    }
 
     /**
      * Create a new user instance after a valid registration.
