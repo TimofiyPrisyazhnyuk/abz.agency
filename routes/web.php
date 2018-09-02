@@ -23,9 +23,8 @@ Auth::routes();
 Route::resource('staff_tree', 'Staff\StaffTreeController');
 Route::resource('staff_list', 'Staff\StaffListController');
 Route::post('staff_list/boss','Staff\StaffListController@getBoss')->name('staff_list.boss');
+Route::post('staff_list/save/user','Staff\StaffListController@saveNewUser')->name('staff_list.save');
 
 // Download image functionality
-Route::resource('image', 'Image\ImageController')->only([
-    'store', 'destroy'
-]);
+Route::resource('image', 'Image\ImageController')->only(['store', 'destroy']);
 

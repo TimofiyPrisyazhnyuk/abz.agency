@@ -2,12 +2,9 @@
 
 namespace App\Http\Controllers\Staff;
 
-use App\Position;
-use App\User;
 use App\UsersTree;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use function PHPSTORM_META\map;
 
 class StaffTreeController extends Controller
 {
@@ -50,8 +47,8 @@ class StaffTreeController extends Controller
     public function store(Request $request)
     {
         if ($request->isJson()) {
-            return response()->json(UsersTree::where('user_parent_id', 1)->with('parentUsers','childUsers')->get());
-//            return response()->json(User::where('position_id', 1)->with('childTreePatch')->first());
+            return response()->json(UsersTree::where('user_parent_id', 1)
+                ->with('parentUsers','childUsers')->get());
         }
     }
 
@@ -63,7 +60,8 @@ class StaffTreeController extends Controller
      */
     public function show($id)
     {
-        return response()->json(UsersTree::where('user_parent_id', $id)->with('childUsers')->get());
+        return response()->json(UsersTree::where('user_parent_id', $id)
+            ->with('childUsers')->get());
     }
 
     /**

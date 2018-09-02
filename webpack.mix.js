@@ -17,4 +17,7 @@ mix.react('resources/assets/js/app.js', 'public/js')
    .js('resources/assets/js/bossUpdate.js','public/js')
    .sass('resources/assets/sass/appStaffTreeIndex.scss', 'public/css')
    .sass('resources/assets/sass/appListUsers.scss', 'public/css')
-   .sass('resources/assets/sass/app.scss', 'public/css');
+   .sass('resources/assets/sass/app.scss', 'public/css')
+   .sass('resources/assets/sass/font-awesome.scss', 'public/css')
+   .sass('resources/assets/sass/animation.scss', 'public/css')
+   .sass('resources/assets/sass/style.scss', 'public/css');

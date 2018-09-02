@@ -32,6 +32,7 @@ export default class Tree extends Component {
                 body: JSON.stringify({})
             }
         ).then(response => {
+            // console.log(response.data);
             this.setState({
                 treeData: [{
                     title: this.getUsers(response.data, 'parent'),
@@ -98,7 +99,6 @@ export default class Tree extends Component {
      */
     getUsers(data, type_user) {
         let childrenItems = [];
-
         if (type_user === "children") {
             data.map((items) =>
                 childrenItems.push({
@@ -171,5 +171,5 @@ export default class Tree extends Component {
 }
 ReactDOM.render(
     <Tree/>,
-    document.getElementById('example')
+    document.getElementById('staffTree')
 );

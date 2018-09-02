@@ -3,7 +3,8 @@
     "/css/appStaffTreeIndex.css": "/css/appStaffTreeIndex.css",
     "/css/appListUsers.css": "/css/appListUsers.css",
     "/css/app.css": "/css/app.css",
-    "/js/bossUpdate.js": "/js/bossUpdate.js",
+    "/css/style.css": "/css/style.css",
     "/js/app.js": "/js/app.js",
-    "/js/datatable.js": "/js/datatable.js"
+    "/js/datatable.js": "/js/datatable.js",
+    "/js/bossUpdate.js": "/js/bossUpdate.js"
 }

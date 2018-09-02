@@ -8,7 +8,6 @@ use App\User;
 use App\UsersTree;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Hash;
 use Yajra\DataTables\Facades\DataTables;
 
 class StaffListController extends Controller
@@ -39,9 +38,45 @@ class StaffListController extends Controller
      */
     public function create()
     {
-        return view('staff-list.create',[
+        return view('staff-list.create', [
             'positions' => Position::all(),
+            'boss' => User::where('position_id', 1)->get()
         ]);
+    }
+
+
+    /**
+     * Save new user to DB and create relation with position
+     *
+     * @param UserRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function saveNewUser(UserRequest $request)
+    {
+        $newUser = User::create([
+            'surname' => $request->input('surname'),
+            'first_name' => $request->input('first_name'),
+            'patronymic' => $request->input('patronymic'),
+            'position_id' => $request->input('position_id'),
+            'amount_of_wages' => $request->input('amount_of_wages'),
+            'email' => $request->input('email'),
+            'date_engagement' => date('Y-m-d'),
+            'password' => $request->input('password'),
+        ]);
+
+        if ($newUser) {
+            $position_id = $request->input('position_id') - 1;
+            if ($position_id > 0) {
+                $boss = User::where('position_id', $position_id)->inRandomOrder()->first();
+                ($boss) ? UsersTree::create(['user_parent_id' => $boss->id, 'user_child_id' => $newUser->id]) : '';
+            }
+
+            return redirect()->route('staff_list.index')
+                ->with('success', 'User created successfully!');
+        }
+        return redirect()->route('staff_list.index')
+            ->with('warning', 'Problem create user, check your input data!');
+
     }
 
     /**
@@ -154,7 +189,10 @@ class StaffListController extends Controller
     public function destroy(User $staff_list)
     {
         $this->changeUsersBoss($staff_list);
+        UsersTree::where('user_parent_id', $staff_list->id)
+            ->where('user_child_id', $staff_list->id)->delete();
         $staff_list->delete();
+
         if ($staff_list) {
 
             return redirect()->route('staff_list.index')
