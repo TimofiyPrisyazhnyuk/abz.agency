@@ -66,8 +66,6 @@ class RegisterController extends Controller
      */
     public function register(UserRequest $request)
     {
-//        $this->validator($request->all())->validate();
-
         event(new Registered($user = $this->create($request->all())));
 
         $this->guard()->login($user);
@@ -75,24 +73,7 @@ class RegisterController extends Controller
         return $this->registered($request, $user)
             ?: redirect($this->redirectPath());
     }
-    /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
-//    protected function validator(array $data)
-//    {
-//        return Validator::make($data, [
-//            'surname' => 'required|string|max:30|min:3',
-//            'first_name' => 'required|string|max:30|min:3',
-//            'patronymic' => 'required|string|max:30|min:3',
-//            'position_id' => 'required|integer|exists:positions,id',
-//            'amount_of_wages' => 'required|numeric|between:3800,400000|regex:/^\d*(\.\d{1,2})?$/',
-//            'email' => 'required|string|email|max:255|unique:users',
-//            'password' => 'required|string|min:6|confirmed',
-//        ]);
-//    }
+
 
     /**
      * Create a new user instance after a valid registration.
@@ -110,7 +91,7 @@ class RegisterController extends Controller
             'amount_of_wages' => $data['amount_of_wages'],
             'email' => $data['email'],
             'date_engagement' => date('Y-m-d'),
-            'password' => Hash::make($data['password']),
+            'password' => $data['password'],
         ]);
         $this->selectBossFromPositions($data['position_id'], $user->id);
 

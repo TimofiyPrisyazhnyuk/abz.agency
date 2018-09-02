@@ -39,7 +39,9 @@ class StaffListController extends Controller
      */
     public function create()
     {
-        return view('staff-list.create');
+        return view('staff-list.create',[
+            'positions' => Position::all(),
+        ]);
     }
 
     /**

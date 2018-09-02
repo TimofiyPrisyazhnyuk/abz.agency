@@ -526,9 +526,18 @@ a.contact_btn:hover {
     color: #fff;
     text-decoration: none;
 }
-
-
-/* no transition on .isotope container */
+.app-padding-logout {
+    width: 100%;
+    vertical-align: middle;
+    padding: 0 10px 0 10px;
+}
+.app-drop-menu {
+    width: 100%;
+}
+.app-padding-logout i {
+    font-size: 18px;
+}
+    /* no transition on .isotope container */
 
 .isotope .isotope-item {
     /* change duration value to whatever you like */
