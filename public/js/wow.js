@@ -1,12 +1,100 @@
-(function() {
-  var MutationObserver, Util, WeakMap,
-    __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
-    __indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, {
+/******/ 				configurable: false,
+/******/ 				enumerable: true,
+/******/ 				get: getter
+/******/ 			});
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "/";
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 454);
+/******/ })
+/************************************************************************/
+/******/ ({
 
-  Util = (function() {
+/***/ 454:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(455);
+
+
+/***/ }),
+
+/***/ 455:
+/***/ (function(module, exports) {
+
+(function () {
+  var MutationObserver,
+      Util,
+      WeakMap,
+      __bind = function __bind(fn, me) {
+    return function () {
+      return fn.apply(me, arguments);
+    };
+  },
+      __indexOf = [].indexOf || function (item) {
+    for (var i = 0, l = this.length; i < l; i++) {
+      if (i in this && this[i] === item) return i;
+    }return -1;
+  };
+
+  Util = function () {
     function Util() {}
 
-    Util.prototype.extend = function(custom, defaults) {
+    Util.prototype.extend = function (custom, defaults) {
       var key, value;
       for (key in defaults) {
         value = defaults[key];
@@ -17,21 +105,21 @@
       return custom;
     };
 
-    Util.prototype.isMobile = function(agent) {
-      return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(agent);
+    Util.prototype.isMobile = function (agent) {
+      return (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(agent)
+      );
     };
 
     return Util;
+  }();
 
-  })();
-
-  WeakMap = this.WeakMap || this.MozWeakMap || (WeakMap = (function() {
+  WeakMap = this.WeakMap || this.MozWeakMap || (WeakMap = function () {
     function WeakMap() {
       this.keys = [];
       this.values = [];
     }
 
-    WeakMap.prototype.get = function(key) {
+    WeakMap.prototype.get = function (key) {
       var i, item, _i, _len, _ref;
       _ref = this.keys;
       for (i = _i = 0, _len = _ref.length; _i < _len; i = ++_i) {
@@ -42,7 +130,7 @@
       }
     };
 
-    WeakMap.prototype.set = function(key, value) {
+    WeakMap.prototype.set = function (key, value) {
       var i, item, _i, _len, _ref;
       _ref = this.keys;
       for (i = _i = 0, _len = _ref.length; _i < _len; i = ++_i) {
@@ -57,10 +145,9 @@
     };
 
     return WeakMap;
+  }());
 
-  })());
-
-  MutationObserver = this.MutationObserver || this.WebkitMutationObserver || this.MozMutationObserver || (MutationObserver = (function() {
+  MutationObserver = this.MutationObserver || this.WebkitMutationObserver || this.MozMutationObserver || (MutationObserver = function () {
     function MutationObserver() {
       console.warn('MutationObserver is not supported by your browser.');
       console.warn('WOW.js cannot detect dom mutations, please call .sync() after loading new content.');
@@ -68,13 +155,12 @@
 
     MutationObserver.notSupported = true;
 
-    MutationObserver.prototype.observe = function() {};
+    MutationObserver.prototype.observe = function () {};
 
     return MutationObserver;
+  }());
 
-  })());
-
-  this.WOW = (function() {
+  this.WOW = function () {
     WOW.prototype.defaults = {
       boxClass: 'wow',
       animateClass: 'animated',
@@ -95,7 +181,7 @@
       this.animationNameCache = new WeakMap();
     }
 
-    WOW.prototype.init = function() {
+    WOW.prototype.init = function () {
       var _ref;
       this.element = window.document.documentElement;
       if ((_ref = document.readyState) === "interactive" || _ref === "complete") {
@@ -106,10 +192,10 @@
       return this.finished = [];
     };
 
-    WOW.prototype.start = function() {
+    WOW.prototype.start = function () {
       var box, _i, _len, _ref;
       this.stopped = false;
-      this.boxes = (function() {
+      this.boxes = function () {
         var _i, _len, _ref, _results;
         _ref = this.element.getElementsByClassName(this.config.boxClass);
         _results = [];
@@ -118,8 +204,8 @@
           _results.push(box);
         }
         return _results;
-      }).call(this);
-      this.all = (function() {
+      }.call(this);
+      this.all = function () {
         var _i, _len, _ref, _results;
         _ref = this.boxes;
         _results = [];
@@ -128,7 +214,7 @@
           _results.push(box);
         }
         return _results;
-      }).call(this);
+      }.call(this);
       if (this.boxes.length) {
         if (this.disabled()) {
           this.resetStyle();
@@ -144,13 +230,13 @@
         }
       }
       if (this.config.live) {
-        return new MutationObserver((function(_this) {
-          return function(records) {
+        return new MutationObserver(function (_this) {
+          return function (records) {
             var node, record, _j, _len1, _results;
             _results = [];
             for (_j = 0, _len1 = records.length; _j < _len1; _j++) {
               record = records[_j];
-              _results.push((function() {
+              _results.push(function () {
                 var _k, _len2, _ref1, _results1;
                 _ref1 = record.addedNodes || [];
                 _results1 = [];
@@ -159,18 +245,18 @@
                   _results1.push(this.doSync(node));
                 }
                 return _results1;
-              }).call(_this));
+              }.call(_this));
             }
             return _results;
           };
-        })(this)).observe(document.body, {
+        }(this)).observe(document.body, {
           childList: true,
           subtree: true
         });
       }
     };
 
-    WOW.prototype.stop = function() {
+    WOW.prototype.stop = function () {
       this.stopped = true;
       window.removeEventListener('scroll', this.scrollHandler, false);
       window.removeEventListener('resize', this.scrollHandler, false);
@@ -179,13 +265,13 @@
       }
     };
 
-    WOW.prototype.sync = function(element) {
+    WOW.prototype.sync = function (element) {
       if (MutationObserver.notSupported) {
         return this.doSync(this.element);
       }
     };
 
-    WOW.prototype.doSync = function(element) {
+    WOW.prototype.doSync = function (element) {
       var box, _i, _len, _ref, _results;
       if (!this.stopped) {
         if (element == null) {
@@ -212,36 +298,36 @@
       }
     };
 
-    WOW.prototype.show = function(box) {
+    WOW.prototype.show = function (box) {
       this.applyStyle(box);
       return box.className = "" + box.className + " " + this.config.animateClass;
     };
 
-    WOW.prototype.applyStyle = function(box, hidden) {
+    WOW.prototype.applyStyle = function (box, hidden) {
       var delay, duration, iteration;
       duration = box.getAttribute('data-wow-duration');
       delay = box.getAttribute('data-wow-delay');
       iteration = box.getAttribute('data-wow-iteration');
-      return this.animate((function(_this) {
-        return function() {
+      return this.animate(function (_this) {
+        return function () {
           return _this.customStyle(box, hidden, duration, delay, iteration);
         };
-      })(this));
+      }(this));
     };
 
-    WOW.prototype.animate = (function() {
+    WOW.prototype.animate = function () {
       if ('requestAnimationFrame' in window) {
-        return function(callback) {
+        return function (callback) {
           return window.requestAnimationFrame(callback);
         };
       } else {
-        return function(callback) {
+        return function (callback) {
           return callback();
         };
       }
-    })();
+    }();
 
-    WOW.prototype.resetStyle = function() {
+    WOW.prototype.resetStyle = function () {
       var box, _i, _len, _ref, _results;
       _ref = this.boxes;
       _results = [];
@@ -252,7 +338,7 @@
       return _results;
     };
 
-    WOW.prototype.customStyle = function(box, hidden, duration, delay, iteration) {
+    WOW.prototype.customStyle = function (box, hidden, duration, delay, iteration) {
       if (hidden) {
         this.cacheAnimationName(box);
       }
@@ -280,27 +366,27 @@
 
     WOW.prototype.vendors = ["moz", "webkit"];
 
-    WOW.prototype.vendorSet = function(elem, properties) {
+    WOW.prototype.vendorSet = function (elem, properties) {
       var name, value, vendor, _results;
       _results = [];
       for (name in properties) {
         value = properties[name];
         elem["" + name] = value;
-        _results.push((function() {
+        _results.push(function () {
           var _i, _len, _ref, _results1;
           _ref = this.vendors;
           _results1 = [];
           for (_i = 0, _len = _ref.length; _i < _len; _i++) {
             vendor = _ref[_i];
-            _results1.push(elem["" + vendor + (name.charAt(0).toUpperCase()) + (name.substr(1))] = value);
+            _results1.push(elem["" + vendor + name.charAt(0).toUpperCase() + name.substr(1)] = value);
           }
           return _results1;
-        }).call(this));
+        }.call(this));
       }
       return _results;
     };
 
-    WOW.prototype.vendorCSS = function(elem, property) {
+    WOW.prototype.vendorCSS = function (elem, property) {
       var result, style, vendor, _i, _len, _ref;
       style = window.getComputedStyle(elem);
       result = style.getPropertyCSSValue(property);
@@ -312,7 +398,7 @@
       return result;
     };
 
-    WOW.prototype.animationName = function(box) {
+    WOW.prototype.animationName = function (box) {
       var animationName;
       try {
         animationName = this.vendorCSS(box, 'animation-name').cssText;
@@ -326,29 +412,29 @@
       }
     };
 
-    WOW.prototype.cacheAnimationName = function(box) {
+    WOW.prototype.cacheAnimationName = function (box) {
       return this.animationNameCache.set(box, this.animationName(box));
     };
 
-    WOW.prototype.cachedAnimationName = function(box) {
+    WOW.prototype.cachedAnimationName = function (box) {
       return this.animationNameCache.get(box);
     };
 
-    WOW.prototype.scrollHandler = function() {
+    WOW.prototype.scrollHandler = function () {
       return this.scrolled = true;
     };
 
-    WOW.prototype.scrollCallback = function() {
+    WOW.prototype.scrollCallback = function () {
       var box;
       if (this.scrolled) {
         this.scrolled = false;
-        this.boxes = (function() {
+        this.boxes = function () {
           var _i, _len, _ref, _results;
           _ref = this.boxes;
           _results = [];
           for (_i = 0, _len = _ref.length; _i < _len; _i++) {
             box = _ref[_i];
-            if (!(box)) {
+            if (!box) {
               continue;
             }
             if (this.isVisible(box)) {
@@ -358,14 +444,14 @@
             _results.push(box);
           }
           return _results;
-        }).call(this);
+        }.call(this);
         if (!(this.boxes.length || this.config.live)) {
           return this.stop();
         }
       }
     };
 
-    WOW.prototype.offsetTop = function(element) {
+    WOW.prototype.offsetTop = function (element) {
       var top;
       while (element.offsetTop === void 0) {
         element = element.parentNode;
@@ -377,7 +463,7 @@
       return top;
     };
 
-    WOW.prototype.isVisible = function(box) {
+    WOW.prototype.isVisible = function (box) {
       var bottom, offset, top, viewBottom, viewTop;
       offset = box.getAttribute('data-wow-offset') || this.config.offset;
       viewTop = window.pageYOffset;
@@ -387,16 +473,18 @@
       return top <= viewBottom && bottom >= viewTop;
     };
 
-    WOW.prototype.util = function() {
+    WOW.prototype.util = function () {
       return this._util != null ? this._util : this._util = new Util();
     };
 
-    WOW.prototype.disabled = function() {
+    WOW.prototype.disabled = function () {
       return !this.config.mobile && this.util().isMobile(navigator.userAgent);
     };
 
     return WOW;
-
-  })();
-
+  }();
 }).call(this);
+
+/***/ })
+
+/******/ });

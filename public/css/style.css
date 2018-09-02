@@ -1165,8 +1165,13 @@ a.contact_btn:hover {
 
   .navbar-inverse .navbar-nav > li > a {
     color: #222;
-    background: #F9F9F9;
+    background: white;
   }
+}
+
+.app-head-text {
+  color: white;
+  text-transform: uppercase;
 }
 
 @media (max-width: 480px) {
