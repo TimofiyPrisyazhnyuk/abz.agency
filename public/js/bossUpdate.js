@@ -77,7 +77,34 @@ module.exports = __webpack_require__(449);
 /***/ (function(module, __webpack_exports__) {
 
 "use strict";
-throw new Error("Module build failed: Error: ENOENT: no such file or directory, open '/Users/timofiyprisyazhnyuk/Sites/abz.agency/resources/assets/js/userUpdate.js'");
+$.ajaxSetup({
+  headers: {
+    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+  }
+});
+
+$(document).on('change', '#position_id', function () {
+  var positionId = $(this).val();
+  var boss = $('#boss_id');
+
+  boss.find('option').remove();
+
+  $.ajax({
+    type: "POST",
+    url: '/staff_list/boss',
+    data: { 'position_id': positionId },
+
+    success: function success(data) {
+      if (data.length === 0) {
+        boss.append('<option value="null" selected="" disabled="">Boss Name</option>');
+      } else {
+        for (var i = 0; i < data.length; i++) {
+          boss.append('<option value="' + data[i].id + '">' + (data[i].surname + ' ' + data[i].first_name + ' ' + data[i].patronymic).slice(0, 14) + '...' + '</option>');
+        }
+      }
+    }
+  });
+});
 
 /***/ })
 

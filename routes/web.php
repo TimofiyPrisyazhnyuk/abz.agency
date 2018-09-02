@@ -20,11 +20,12 @@ Route::get('/', ['uses' => 'Welcome\WelcomeController@welcome'])->name('welcome'
 Auth::routes();
 
 // Users functionality
-Route::resource('staff_tree','Staff\StaffTreeController');
-Route::resource('staff_list','Staff\StaffListController');
+Route::resource('staff_tree', 'Staff\StaffTreeController');
+Route::resource('staff_list', 'Staff\StaffListController');
+Route::post('staff_list/boss','Staff\StaffListController@getBoss')->name('staff_list.boss');
 
 // Download image functionality
-Route::resource('image','Image\ImageController')->only([
+Route::resource('image', 'Image\ImageController')->only([
     'store', 'destroy'
-]);;
+]);
 

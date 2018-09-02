@@ -60,20 +60,20 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 447);
+/******/ 	return __webpack_require__(__webpack_require__.s = 446);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 447:
+/***/ 446:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(448);
+module.exports = __webpack_require__(447);
 
 
 /***/ }),
 
-/***/ 448:
+/***/ 447:
 /***/ (function(module, exports) {
 
 $.ajaxSetup({
@@ -148,7 +148,7 @@ $(document).ready(function () {
       title: 'Control',
       className: 'text-center',
       render: function render(s, d, item) {
-        return ' <a href="/staff_list/' + item.id + '" class="btn btn-info btn-xs" style="clear: right"><i class="fa fa-eye fa-2x"></i></a>' + ' <a href="/staff_list/' + item.id + '/edit" class="btn btn-warning btn-xs" style="clear: right"><i class="fa fa-edit fa-2x"></i></a>' + ' <a href="/staff_list/' + item.id + '" class="btn btn-danger btn-xs" style="clear: right"><i class="fa fa-close fa-2x"></i></a>';
+        return ' <a href="/staff_list/' + item.id + '" class="btn btn-info btn-xs"><i class="fa fa-eye fa-2x"></i></a>' + ' <a href="/staff_list/' + item.id + '/edit" class="btn btn-warning btn-xs" ><i class="fa fa-edit fa-2x"></i></a>' + '<a href="#" class="btn  btn-xs">' + '<form id="userDelete"  action="/staff_list/' + item.id + '" method="POST">' + '   <input type="hidden" name="_method" value="delete" />' + '   <input type="hidden" name="_token" value="' + document.getElementsByName('csrf-token')[0].content + '">' + '   <button type="submit" class="btn btn-danger btn-xs"><i class="fa fa-close fa-2x"></i></button>' + '</form>' + '</a>';
       }
     }]
   });

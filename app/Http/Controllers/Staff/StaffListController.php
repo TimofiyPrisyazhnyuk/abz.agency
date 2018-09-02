@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Staff;
 use App\Http\Requests\UserRequest;
 use App\Position;
 use App\User;
+use App\UsersTree;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -38,7 +39,7 @@ class StaffListController extends Controller
      */
     public function create()
     {
-        //
+        return view('staff-list.create');
     }
 
     /**
@@ -91,21 +92,73 @@ class StaffListController extends Controller
      */
     public function update(UserRequest $request, User $staff_list)
     {
-//        dump($staff_list);
-//        dd($request->all());
-        $staff_list->update($request->except(['_token', '_method', 'id']));
+        ($request->input('position_id') != $staff_list->position_id) ? $this->changeUsersBoss($staff_list) : false;
+        ($staff_list->parentTree) ? $staff_list->parentTree->update(['user_parent_id' => $request->input('boss_id')]) : false;
 
-        return redirect()->back();
+        $staff_list->update($request->except(['_token', '_method', 'id', 'password_confirmation', 'boss_id']));
+        if ($staff_list) {
+
+            return redirect()->back()
+                ->with('success', 'Success update user information');
+        }
+        return redirect()->back()
+            ->with('warning', 'Problem with user updated information, check you input data');
+
+    }
+
+    /**
+     * Change users Boss if current user has a child users
+     *
+     * @param $staff_list
+     * @return bool
+     */
+    public function changeUsersBoss($staff_list)
+    {
+        $users = UsersTree::where('user_parent_id', $staff_list->id)->get();
+        $bossId = User::where('position_id', $staff_list->position_id)->get(['id']);
+
+        if (!$users->isEmpty()) {
+            foreach ($users as $value) {
+                $value->update(['user_parent_id' => $bossId->random()->id]);
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Get boss from position user Ajax
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getBoss(Request $request)
+    {
+        if ($request->ajax()) {
+            $bossPositionId = ($request->input('position_id') - 1 <= 0) ?
+                false : $request->input('position_id') - 1;
+
+            return response()->json(User::where('position_id', $bossPositionId)->get());
+        }
+        abort(404);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
+     * @param User $staff_list
+     * @return void
+     * @throws \Exception
      */
-    public function destroy($id)
+    public function destroy(User $staff_list)
     {
-        //
+        $this->changeUsersBoss($staff_list);
+        $staff_list->delete();
+        if ($staff_list) {
+
+            return redirect()->route('staff_list.index')
+                ->with('success', 'This user deleted!');
+        }
+        return redirect()->route('staff_list.index')
+            ->with('warning', 'Problem delete user, application have small mistake!');
     }
 }
