@@ -1,4 +1,3 @@
-import ReactDOM from "react-dom";
 import React, {Component} from 'react';
 import SortableTree from 'react-sortable-tree';
 import 'react-sortable-tree/style.css';
@@ -13,19 +12,18 @@ import {addNodeUnderParent} from 'react-sortable-tree';
 const token = document.querySelector('meta[name="csrf-token"').getAttribute('content');
 
 export default class Tree extends Component {
+
     constructor(props) {
         super(props);
         this.state = {
             treeData: []
         };
-        this.getTreeUsers()
     }
 
-
     /**
-     * Get tree users from database
+     * Get tree users from database from start download
      */
-    getTreeUsers() {
+    componentDidMount() {
         axios.post('/staff_tree', {
                 headers: {'X-CSRF-TOKEN': token},
                 credentials: "same-origin",
@@ -50,24 +48,28 @@ export default class Tree extends Component {
      * @param addUser
      */
     addNodeUser(currentUser, addUser) {
+        console.log(currentUser.id);
+        // return;
         let newTree = addNodeUnderParent({
             treeData: this.state.treeData,
             newNode: addUser,
             // path: currentUser.id,
-            // expandParent: false,
-            expanded: false,
-            parentKey: currentUser.id - 1, // Still don't know where to get the parentKey
-            getNodeKey: ({treeIndex}) => treeIndex,
+            expandParent: false,
+            ignoreCollapsed: true,
+            parentKey: currentUser.id, // Still don't know where to get the parentKey
+            getNodeKey: (key) => currentUser.id,
         })
         this.setState({treeData: newTree.treeData});
     }
 
     /**
+     * Get user from db after click to photo
      *
      * @param e
      * @param data
      */
     getUsersToPosition(e, currentUser) {
+
         axios.get("/staff_tree/" + currentUser.id, {
                 headers: {'X-CSRF-TOKEN': token},
                 credentials: "same-origin",
@@ -84,6 +86,7 @@ export default class Tree extends Component {
     }
 
     /**
+     * Check user have own image or show default
      *
      * @param path_image
      * @returns {*}
@@ -93,69 +96,58 @@ export default class Tree extends Component {
     }
 
     /**
+     * Create tree component each users
+     */
+    createTreeComponentUser(user) {
+        return ([
+            <div key={user.id} onClick={(e) => this.getUsersToPosition(e, user)}>
+                <div className="app-left-block">
+                    <img src={Tree.checkIfImage(user.image)} className="app-tree-image"/>
+                </div>
+                <div className="app-right-block">
+                    <div className="app-up-block">
+                        <span className="app-user-name">Full name:
+                            {user.surname + ' ' + user.first_name + ' ' + user.patronymic},
+                        </span>
+                        <span className="app-user-position">Position: number-{user.position_id},</span>
+                    </div>
+                    <div className="app-down-block">
+                        <span className="app-user-pay-amount">Salary: {user.amount_of_wages}$,</span>
+                        <span className="app-user-start-date">Employment date: {user.date_engagement}.</span>
+                    </div>
+                </div>
+            </div>
+        ]);
+    }
+
+    /**
+     * Get users from db (parent or child)
      *
      * @param data
      * @returns {Array}
      */
     getUsers(data, type_user) {
         let childrenItems = [];
-        if (type_user === "children") {
+
+        if (type_user === "parent") {
+            childrenItems.push(
+                this.createTreeComponentUser(data[0].parent_users)
+            )
+        } else {
             data.map((items) =>
                 childrenItems.push({
-                    title: ([
-                        <div key={items.child_users.id}>
-                            <div className="app-left-block">
-                                <img onClick={(e) => this.getUsersToPosition(e, items.child_users)}
-                                     src={Tree.checkIfImage(items.child_users.image)} className="app-tree-image"/>
-                            </div>
-                            <div className="app-right-block">
-                                <div className="app-up-block">
-                                    <span className="app-user-name">Full name:
-                                        {items.child_users.surname + ' ' + items.child_users.first_name + ' ' + items.child_users.patronymic},
-                                    </span>
-                                    <span
-                                        className="app-user-position">Position: number-{items.child_users.position_id},</span>
-                                </div>
-                                <div className="app-down-block">
-                                    <span
-                                        className="app-user-pay-amount">Salary: {items.child_users.amount_of_wages}$,</span>
-                                    <span
-                                        className="app-user-start-date">Employment date: {items.child_users.date_engagement}.</span>
-                                </div>
-                            </div>
-                        </div>
-                    ])
+                    title: this.createTreeComponentUser(items.child_users)
                 })
             )
-            return childrenItems;
-
-        } else if (type_user === "parent") {
-            childrenItems.push([
-                <div key={data[0].parent_users.id}>
-                    <div className="app-left-block">
-                        <img src={Tree.checkIfImage(data[0].parent_users.image)} className="app-tree-image"/>
-                    </div>
-                    <div className="app-right-block">
-                        <div className="app-up-block">
-                             <span className="app-user-name">Full name:
-                                 {data[0].parent_users.surname + ' ' + data[0].parent_users.first_name + ' ' + data[0].parent_users.patronymic},
-                            </span>
-                            <span
-                                className="app-user-position">Position number-{data[0].parent_users.position_id},</span>
-                        </div>
-                        <div className="app-down-block">
-                            <span
-                                className="app-user-pay-amount">Salary: {data[0].parent_users.amount_of_wages}$,</span>
-                            <span
-                                className="app-user-start-date">Employment date: {data[0].parent_users.date_engagement}.</span>
-                        </div>
-                    </div>
-                </div>
-            ])
-            return childrenItems;
         }
+        return childrenItems;
     }
 
+    /**
+     * RENDER COMPONENT TREE
+     *
+     * @returns {*}
+     */
     render() {
         return (
             <div style={{height: 500}}>
@@ -167,9 +159,6 @@ export default class Tree extends Component {
             </div>
         );
     }
-
 }
-ReactDOM.render(
-    <Tree/>,
-    document.getElementById('staffTree')
-);
+
+

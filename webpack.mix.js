@@ -12,16 +12,15 @@ let mix = require('laravel-mix');
  */
 
 mix.react('resources/assets/js/app.js', 'public/js')
-   .js('resources/assets/js/appStaffTree.js','public/js')
-   .js('resources/assets/js/datatable.js','public/js')
-   .js('resources/assets/js/custom.js','public/js')
-   .js('resources/assets/js/wow.js','public/js')
-   .js('resources/assets/js/userUpdate.js','public/js')
-   .js('resources/assets/js/bossUpdate.js','public/js')
-   .sass('resources/assets/sass/appStaffTreeIndex.scss', 'public/css')
-   .sass('resources/assets/sass/appListUsers.scss', 'public/css')
-   .sass('resources/assets/sass/app.scss', 'public/css')
-   .sass('resources/assets/sass/font-awesome.scss', 'public/css')
-   .sass('resources/assets/sass/animation.scss', 'public/css')
-   .sass('resources/assets/sass/animate.scss', 'public/css')
-   .sass('resources/assets/sass/style.scss', 'public/css');
+    .js('resources/assets/js/appStaffTree.js', 'public/js')
+    .js('resources/assets/js/datatable.js', 'public/js')
+    .js('resources/assets/js/userUpdate.js', 'public/js')
+    .js('resources/assets/js/bossUpdate.js', 'public/js')
+    .js('resources/assets/js/custom.js', 'public/js')
+    .sass('resources/assets/sass/appStaffTreeIndex.scss', 'public/css')
+    .sass('resources/assets/sass/appListUsers.scss', 'public/css')
+    .sass('resources/assets/sass/app.scss', 'public/css')
+    .sass('resources/assets/sass/font-awesome.scss', 'public/css')
+    .sass('resources/assets/sass/animation.scss', 'public/css')
+    .sass('resources/assets/sass/animate.scss', 'public/css')
+    .sass('resources/assets/sass/style.scss', 'public/css');

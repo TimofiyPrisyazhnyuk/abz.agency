@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 460);
+/******/ 	return __webpack_require__(__webpack_require__.s = 458);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -14347,6 +14347,34 @@ module.exports = function(module) {
 
 /***/ }),
 
+/***/ 458:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(459);
+
+
+/***/ }),
+
+/***/ 459:
+/***/ (function(module, exports, __webpack_require__) {
+
+
+/**
+ * First we will load all of this project's JavaScript dependencies which
+ * includes React and other helpers. It's a great starting point while
+ * building robust, powerful web applications using React + Laravel.
+ */
+
+__webpack_require__(460);
+
+/**
+ * Next, we will create a fresh React component instance and attach it to
+ * the page. Then, you may begin adding components to this application
+ * or customize the JavaScript scaffolding to fit your unique needs.
+ */
+
+/***/ }),
+
 /***/ 46:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -14369,36 +14397,8 @@ module.exports = function bind(fn, thisArg) {
 /***/ 460:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(461);
 
-
-/***/ }),
-
-/***/ 461:
-/***/ (function(module, exports, __webpack_require__) {
-
-
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes React and other helpers. It's a great starting point while
- * building robust, powerful web applications using React + Laravel.
- */
-
-__webpack_require__(462);
-
-/**
- * Next, we will create a fresh React component instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
-
-/***/ }),
-
-/***/ 462:
-/***/ (function(module, exports, __webpack_require__) {
-
-
-window._ = __webpack_require__(463);
+window._ = __webpack_require__(461);
 window.Popper = __webpack_require__(189).default;
 
 /**
@@ -14410,7 +14410,7 @@ window.Popper = __webpack_require__(189).default;
 try {
   window.$ = window.jQuery = __webpack_require__(190);
 
-  __webpack_require__(464);
+  __webpack_require__(462);
 } catch (e) {}
 
 /**
@@ -14456,7 +14456,7 @@ if (token) {
 
 /***/ }),
 
-/***/ 463:
+/***/ 461:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, module) {var __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -31570,7 +31570,7 @@ if (token) {
 
 /***/ }),
 
-/***/ 464:
+/***/ 462:
 /***/ (function(module, exports, __webpack_require__) {
 
 /*!

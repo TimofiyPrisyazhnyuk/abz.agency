@@ -7,8 +7,14 @@ body {
   background-color: #df0031;
 }
 
+.title h2 {
+  color: #fff;
+  font-weight: 400;
+  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #ff2d95, 0 0 20px #ff2d95, 0 0 30px #ff2d95, 0 0 40px #ff2d95, 0 0 55px #ff2d95;
+}
+
 #staff_tree {
-  min-height: 80vh;
+  min-height: 90vh;
   background: #EFEFEF;
 }
 
@@ -19,7 +25,7 @@ body {
 }
 
 .rst__rowWrapper {
-  min-width: 650px;
+  min-width: 680px;
   min-height: 75px;
 }
 
@@ -37,9 +43,10 @@ body {
 .app-user-position,
 .app-user-pay-amount,
 .app-user-start-date {
-  background: #e5fcf8;
+  background: #dcfcdc;
   border: 1px solid #7a7a7a;
   border-radius: 10px;
+  margin: 0.5%;
 }
 
 .app-tree-image {

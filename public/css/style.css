@@ -279,10 +279,11 @@ p {
 
 a.read_more2 {
   font-family: 'Raleway', sans-serif;
-  display: block;
+  display: inline-block;
+  margin: 10px 0 10px 0;
   font-size: 16px;
   width: 178px;
-  height: 46px;
+  height: auto;
   line-height: 46px;
   border-radius: 3px;
   text-align: center;
@@ -552,6 +553,10 @@ a.contact_btn:hover {
 
 .page_section.paddind {
   padding-bottom: 60px;
+}
+
+.app-image {
+  display: inline;
 }
 
 /* Happy Clients---------------------------------*/
