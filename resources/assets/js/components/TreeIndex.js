@@ -4,12 +4,8 @@ import 'react-sortable-tree/style.css';
 import axios from 'axios';
 import {addNodeUnderParent} from 'react-sortable-tree';
 
-
-/**
- *
- * @type {string | null}
- */
 const token = document.querySelector('meta[name="csrf-token"').getAttribute('content');
+
 
 export default class Tree extends Component {
 
@@ -48,19 +44,20 @@ export default class Tree extends Component {
      * @param addUser
      */
     addNodeUser(currentUser, addUser) {
+
         console.log(currentUser.id);
-        // return;
+
         let newTree = addNodeUnderParent({
             treeData: this.state.treeData,
             newNode: addUser,
-            // path: currentUser.id,
+            getNodeKey:  ({treeIndex}) => treeIndex,
             expandParent: false,
-            ignoreCollapsed: true,
             parentKey: currentUser.id, // Still don't know where to get the parentKey
-            getNodeKey: (key) => currentUser.id,
+
         })
         this.setState({treeData: newTree.treeData});
     }
+
 
     /**
      * Get user from db after click to photo
@@ -69,7 +66,6 @@ export default class Tree extends Component {
      * @param data
      */
     getUsersToPosition(e, currentUser) {
-
         axios.get("/staff_tree/" + currentUser.id, {
                 headers: {'X-CSRF-TOKEN': token},
                 credentials: "same-origin",
@@ -100,7 +96,7 @@ export default class Tree extends Component {
      */
     createTreeComponentUser(user) {
         return ([
-            <div key={user.id} onClick={(e) => this.getUsersToPosition(e, user)}>
+            <div  key={user.id} onClick={(e) => this.getUsersToPosition(e, user)}>
                 <div className="app-left-block">
                     <img src={Tree.checkIfImage(user.image)} className="app-tree-image"/>
                 </div>
@@ -148,7 +144,7 @@ export default class Tree extends Component {
      *
      * @returns {*}
      */
-    render() {
+    render(node) {
         return (
             <div style={{height: 500}}>
                 <SortableTree

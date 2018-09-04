@@ -46,7 +46,7 @@ class StaffTreeController extends Controller
      */
     public function store(Request $request)
     {
-        if ($request->isJson()) {
+        if ($request->ajax()) {
             return response()->json(UsersTree::where('user_parent_id', 1)
                 ->with('parentUsers','childUsers')->get());
         }

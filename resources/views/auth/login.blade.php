@@ -3,11 +3,11 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="col-xl-8 col-md-8 col-sm-10 col-xs-12">
                 <div class="alert">
                     <div class="alert"><h4>{{ __('Login') }}</h4></div>
 
-                    <div class="p-5">
+                    <div class="pt-4 mb-5">
                         <form method="POST" action="{{ route('login') }}" aria-label="{{ __('Login') }}">
                             @csrf
 
@@ -15,7 +15,7 @@
                                 <label for="email"
                                        class="col-sm-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
-                                <div class="col-md-6">
+                                <div class="col-md-6 ">
                                     <input id="email" type="email"
                                            class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
                                            name="email" value="{{ old('email') }}" required autofocus>
