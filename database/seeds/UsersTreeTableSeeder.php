@@ -14,6 +14,8 @@ class UsersTreeTableSeeder extends Seeder
     public function run()
     {
         $users = User::all();
+//        Increment user tree - step - 5000
+//        $users = User::where('id', '>', 45000)->get();
 
         $count_users = [
             'users_1' => 10,

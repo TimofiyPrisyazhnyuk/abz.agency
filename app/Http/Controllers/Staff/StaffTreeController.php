@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Staff;
 
+use App\User;
 use App\UsersTree;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -47,8 +48,8 @@ class StaffTreeController extends Controller
     public function store(Request $request)
     {
         if ($request->ajax()) {
-            return response()->json(UsersTree::where('user_parent_id', 1)
-                ->with('parentUsers','childUsers')->get());
+            return response()->json(User::where('position_id', 1)
+                ->with('position')->get());
         }
     }
 

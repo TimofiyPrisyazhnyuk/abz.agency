@@ -60,27 +60,35 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 191);
+/******/ 	return __webpack_require__(__webpack_require__.s = 10);
 /******/ })
 /************************************************************************/
-/******/ ({
-
-/***/ 191:
+/******/ ([
+/* 0 */,
+/* 1 */,
+/* 2 */,
+/* 3 */,
+/* 4 */,
+/* 5 */,
+/* 6 */,
+/* 7 */,
+/* 8 */,
+/* 9 */,
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(192);
-__webpack_require__(443);
-__webpack_require__(444);
-__webpack_require__(445);
-__webpack_require__(446);
-__webpack_require__(447);
-__webpack_require__(448);
-module.exports = __webpack_require__(449);
+__webpack_require__(11);
+__webpack_require__(14);
+__webpack_require__(15);
+__webpack_require__(16);
+__webpack_require__(17);
+__webpack_require__(18);
+__webpack_require__(19);
+module.exports = __webpack_require__(20);
 
 
 /***/ }),
-
-/***/ 192:
+/* 11 */
 /***/ (function(module, __webpack_exports__) {
 
 "use strict";
@@ -96,55 +104,120 @@ module.exports = __webpack_require__(449);
 //     document.getElementById('staffTree')
 // );
 
-/***/ }),
 
-/***/ 443:
+$(function () {
+  // Container tree users
+  var container = $('#staffTree');
+
+  $.ajaxSetup({
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+  });
+
+  /**     * Get tree users from database from start download     */
+  $.ajax({
+    type: "POST",
+    url: '/staff_tree',
+    data: JSON.stringify({}),
+    success: function success(data) {
+      container.jstree({
+        'core': {
+          'check_callback': true,
+          'data': createTreeComponentUser(data)
+        }
+      });
+    }
+  });
+
+  /**     *  Create start tree users 1 and 2 positions     */
+  function createTreeComponentUser(user) {
+    var childrenItems = [];
+
+    user.map(function (items) {
+      return childrenItems.push({
+        "text": [items.surname, items.position_id, items.id],
+        "id": items.id,
+        "children": []
+      });
+    });
+    return childrenItems;
+  }
+
+  /**     *  Add new node under parent     */
+  container.on("click", function (event) {
+    var targetUserId = $(event.target).closest('.jstree-node').attr('id');
+
+    // if (targetUserId !== '1') {
+    $.ajax({
+      type: "GET",
+      url: "/staff_tree/" + targetUserId,
+      data: JSON.stringify({}),
+      success: function success(data) {
+        if (data.length) {
+          if (!container.jstree(true).get_node(data[0].child_users.id)) {
+            data.map(function (item) {
+              container.jstree().create_node(item.user_parent_id, {
+                "text": [item.child_users.surname, item.child_users.position_id, item.child_users.id],
+                "id": item.child_users.id
+              }, "last");
+            });
+          }
+        }
+      }
+    });
+    // }
+  });
+
+  /**     * Check user have own image or show default     *     * @param path_image     * @returns {*}     */
+  function checkIfImage(path_image) {
+    return path_image ? path_image : 'img/default.png';
+  }
+});
+
+/***/ }),
+/* 12 */,
+/* 13 */,
+/* 14 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-
-/***/ 444:
+/* 15 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-
-/***/ 445:
+/* 16 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-
-/***/ 446:
+/* 17 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-
-/***/ 447:
+/* 18 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-
-/***/ 448:
+/* 19 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-
-/***/ 449:
+/* 20 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ })
-
-/******/ });
+/******/ ]);

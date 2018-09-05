@@ -38,7 +38,7 @@ $factory->define(App\User::class, function (Faker $faker) {
         'surname' => $faker->firstName,
         'first_name' => $faker->lastName,
         'patronymic' => $faker->lastName,
-        'email' => $faker->unique()->safeEmail,
+        'email' => 'abz@' . str_random(7).'com' ,
         'password' => bcrypt(123456), // secret
         'amount_of_wages' => $increment['amount'] + $increment['increment'],
         'date_engagement' => date('Y-m-d'),
