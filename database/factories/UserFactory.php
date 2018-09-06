@@ -38,12 +38,11 @@ $factory->define(App\User::class, function (Faker $faker) {
         'surname' => $faker->firstName,
         'first_name' => $faker->lastName,
         'patronymic' => $faker->lastName,
-        'email' => 'abz@' . str_random(7).'com' ,
-        'password' => bcrypt(123456), // secret
+        'email' => 'abz@' . str_random(7).'.com' ,
+        'password' => 123456,
         'amount_of_wages' => $increment['amount'] + $increment['increment'],
         'date_engagement' => date('Y-m-d'),
         'position_id' => $increment['position'],
-        'remember_token' => str_random(16),
     ];
 
 });

@@ -60,20 +60,20 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 25);
+/******/ 	return __webpack_require__(__webpack_require__.s = 24);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 25:
+/***/ 24:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(26);
+module.exports = __webpack_require__(25);
 
 
 /***/ }),
 
-/***/ 26:
+/***/ 25:
 /***/ (function(module, exports) {
 
 $.ajaxSetup({
@@ -82,11 +82,19 @@ $.ajaxSetup({
   }
 });
 
+$(document).ready(function () {
+  bossUpdate();
+});
 $(document).on('change', '#position_id', function () {
-  var positionId = $(this).val();
+  bossUpdate();
+});
+
+function bossUpdate() {
+  var positionId = $('#position_id').val();
   var boss = $('#boss_id');
 
   boss.find('option').remove();
+  console.log($('#parentBoss').val());
 
   $.ajax({
     type: "POST",
@@ -98,12 +106,17 @@ $(document).on('change', '#position_id', function () {
         boss.append('<option value="null" selected="" disabled="">Boss Name</option>');
       } else {
         for (var i = 0; i < data.length; i++) {
-          boss.append('<option value="' + data[i].id + '">' + (data[i].surname + ' ' + data[i].first_name + ' ' + data[i].patronymic).slice(0, 14) + '...' + '</option>');
+          if (data[i].id == $('#parentBoss').val()) {
+            boss.append('<option selected value="' + data[i].id + '" >' + (data[i].surname + ' ' + data[i].first_name + ' ' + data[i].patronymic).slice(0, 14) + '...' + '</option>');
+          } else {
+            boss.append('<option value="' + data[i].id + '" >' + (data[i].surname + ' ' + data[i].first_name + ' ' + data[i].patronymic).slice(0, 14) + '...' + '</option>');
+          }
         }
       }
+      // console.log($('#parentBoss').val());
     }
   });
-});
+}
 
 /***/ })
 

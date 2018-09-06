@@ -15,8 +15,8 @@
 }
 
 .app-list-image {
-  width: 80px;
-  height: auto;
+  max-width: 80px;
+  max-height: 80px;
   border-radius: 50%;
 }
 
@@ -29,8 +29,6 @@ table.dataTable tbody td {
   text-align: center;
   margin-bottom: 1em;
   border-radius: 20px;
-  -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .app-user-inf i {
@@ -47,6 +45,10 @@ table.dataTable tbody td {
 
 .app-edit-user {
   margin: 10px 0 40px 0;
+}
+
+.app-margin-top {
+  margin-top: 20px;
 }
 
 .app-edit-user a {

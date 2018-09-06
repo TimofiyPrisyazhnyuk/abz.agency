@@ -23,4 +23,5 @@ mix.react('resources/assets/js/app.js', 'public/js')
     .sass('resources/assets/sass/font-awesome.scss', 'public/css')
     .sass('resources/assets/sass/animation.scss', 'public/css')
     .sass('resources/assets/sass/animate.scss', 'public/css')
+    .sass('resources/assets/sass/app-jsTree.scss', 'public/css')
     .sass('resources/assets/sass/style.scss', 'public/css');

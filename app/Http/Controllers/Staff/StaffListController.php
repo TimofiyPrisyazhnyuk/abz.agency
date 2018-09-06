@@ -89,7 +89,7 @@ class StaffListController extends Controller
     public function store(Request $request)
     {
         if ($request->ajax()) {
-            return DataTables::of(User::with('position')->get())->toJson();
+            return DataTables::of(User::with('position'))->toJson();
         }
         abort(404);
     }
@@ -116,7 +116,6 @@ class StaffListController extends Controller
         return view('staff-list.edit', [
             'user' => $staff_list,
             'positions' => Position::all(),
-            'boss' => User::where('position_id', $staff_list->position_id - 1)->get()
         ]);
     }
 
@@ -130,7 +129,14 @@ class StaffListController extends Controller
     public function update(UserRequest $request, User $staff_list)
     {
         ($request->input('position_id') != $staff_list->position_id) ? $this->changeUsersBoss($staff_list) : false;
-        ($staff_list->parentTree) ? $staff_list->parentTree->update(['user_parent_id' => $request->input('boss_id')]) : false;
+        if ($staff_list->parentTree) {
+            $staff_list->parentTree->update(['user_parent_id' => $request->input('boss_id')]);
+        } else {
+             UsersTree::create([
+                 'user_parent_id' => $request->input('boss_id'),
+                 'user_child_id' => $staff_list->id
+             ]);
+        }
 
         $staff_list->update($request->except(['_token', '_method', 'id', 'password_confirmation', 'boss_id']));
         if ($staff_list) {
@@ -174,13 +180,14 @@ class StaffListController extends Controller
             $bossPositionId = ($request->input('position_id') - 1 <= 0) ?
                 false : $request->input('position_id') - 1;
 
-            return response()->json(User::where('position_id', $bossPositionId)->get());
+            return response()->json(User::where('position_id', $bossPositionId)
+                ->get(['id', 'surname', 'first_name', 'patronymic']));
         }
         abort(404);
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove user.
      *
      * @param User $staff_list
      * @return void

@@ -78,32 +78,19 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(11);
+__webpack_require__(12);
+__webpack_require__(13);
 __webpack_require__(14);
 __webpack_require__(15);
 __webpack_require__(16);
 __webpack_require__(17);
 __webpack_require__(18);
-__webpack_require__(19);
-module.exports = __webpack_require__(20);
+module.exports = __webpack_require__(19);
 
 
 /***/ }),
 /* 11 */
-/***/ (function(module, __webpack_exports__) {
-
-"use strict";
-// Old tree Users react
-
-// import React from "react";
-// import ReactDOM from "react-dom";
-//
-// import Tree from "./components/TreeIndex";
-//
-// ReactDOM.render(
-//     <Tree/>,
-//     document.getElementById('staffTree')
-// );
-
+/***/ (function(module, exports) {
 
 $(function () {
   // Container tree users
@@ -125,20 +112,20 @@ $(function () {
         'core': {
           'check_callback': true,
           'data': createTreeComponentUser(data)
-        }
-      });
+          // "plugins" : [ "search", "dnd" ],
+        } });
     }
   });
 
-  /**     *  Create start tree users 1 and 2 positions     */
+  /**     *  Create start tree users 1 pisition     */
   function createTreeComponentUser(user) {
     var childrenItems = [];
 
     user.map(function (items) {
       return childrenItems.push({
-        "text": [items.surname, items.position_id, items.id],
-        "id": items.id,
-        "children": []
+        "icon": checkIfImage(items.image),
+        "text": ['<div class="app-right"><b class="app-badge-name">Name: ' + items.surname + ' ' + items.first_name + ' ' + items.patronymic + '</b>', '<b class="app-badge-posit">Position: ' + items.position.position_name + '</b>', '<br><b class="app-badge-date">Date Enagement: ' + items.date_engagement + '</b>', '<b class="app-badge-salary">Salary: ' + items.amount_of_wages + ' UAN</b></div>'],
+        "id": items.id
       });
     });
     return childrenItems;
@@ -148,7 +135,6 @@ $(function () {
   container.on("click", function (event) {
     var targetUserId = $(event.target).closest('.jstree-node').attr('id');
 
-    // if (targetUserId !== '1') {
     $.ajax({
       type: "GET",
       url: "/staff_tree/" + targetUserId,
@@ -156,10 +142,11 @@ $(function () {
       success: function success(data) {
         if (data.length) {
           if (!container.jstree(true).get_node(data[0].child_users.id)) {
-            data.map(function (item) {
-              container.jstree().create_node(item.user_parent_id, {
-                "text": [item.child_users.surname, item.child_users.position_id, item.child_users.id],
-                "id": item.child_users.id
+            data.map(function (items) {
+              container.jstree().create_node(items.user_parent_id, {
+                "icon": checkIfImage(items.child_users.image),
+                "text": ['<div class="app-right"><b class="app-badge-name">Name: ' + items.child_users.surname + ' ' + items.child_users.first_name + ' ' + items.child_users.patronymic + '</b>', '<b class="app-badge-posit">Position: Worker Level ' + items.child_users.position_id + '</b>', '<br><b class="app-badge-date">Date Enagement: ' + items.child_users.date_engagement + '</b>', '<b class="app-badge-salary">Salary: ' + items.child_users.amount_of_wages + ' UAN</b></div>'],
+                "id": items.child_users.id
               }, "last");
             });
           }
@@ -171,13 +158,23 @@ $(function () {
 
   /**     * Check user have own image or show default     *     * @param path_image     * @returns {*}     */
   function checkIfImage(path_image) {
-    return path_image ? path_image : 'img/default.png';
+    return path_image ? '/image_upload/' + path_image : '/img/default.png';
   }
 });
 
 /***/ }),
-/* 12 */,
-/* 13 */,
+/* 12 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
 /* 14 */
 /***/ (function(module, exports) {
 
@@ -209,12 +206,6 @@ $(function () {
 
 /***/ }),
 /* 19 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 20 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
