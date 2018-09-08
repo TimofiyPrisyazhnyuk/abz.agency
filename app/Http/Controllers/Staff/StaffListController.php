@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Staff;
 
+use App\Http\Controllers\Image\ImageController;
 use App\Http\Requests\UserRequest;
 use App\Position;
 use App\User;
@@ -198,6 +199,9 @@ class StaffListController extends Controller
         $this->changeUsersBoss($staff_list);
         UsersTree::where('user_parent_id', $staff_list->id)
             ->where('user_child_id', $staff_list->id)->delete();
+
+        $deleteImage = new ImageController();
+        $deleteImage->deleteOldFile($staff_list);
         $staff_list->delete();
 
         if ($staff_list) {
