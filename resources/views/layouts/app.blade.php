@@ -84,7 +84,7 @@
 <footer class="footer_wrapper fixed-bottom" id="contact">
     <div class="container">
         <div class="footer_bottom">
-            <span>Copyright © 2014, Template by
+            <span>Copyright © {{ date('Y') }},
                 <a href="http://abz.agency">abz.agency.com</a>.
             </span>
         </div>
